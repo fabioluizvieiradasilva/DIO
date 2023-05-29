@@ -1,0 +1,15 @@
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\bin\Debug\net7.0\EstacionamentoApp.exe
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\bin\Debug\net7.0\EstacionamentoApp.deps.json
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\bin\Debug\net7.0\EstacionamentoApp.runtimeconfig.json
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\bin\Debug\net7.0\EstacionamentoApp.dll
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\bin\Debug\net7.0\EstacionamentoApp.pdb
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.csproj.AssemblyReference.cache
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.AssemblyInfoInputs.cache
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.AssemblyInfo.cs
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.csproj.CoreCompileInputs.cache
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.dll
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\refint\EstacionamentoApp.dll
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.pdb
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\EstacionamentoApp.genruntimeconfig.cache
+C:\Dev\DIO\EstacionamentoApp\EstacionamentoApp\obj\Debug\net7.0\ref\EstacionamentoApp.dll
