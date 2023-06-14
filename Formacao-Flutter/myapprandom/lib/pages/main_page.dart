@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../shared/widgets/custom_drawer.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -10,10 +12,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("My app"),
-      ),
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Main app"),
+          ),
+          drawer: const CustomDrawer()),
     );
   }
 }
