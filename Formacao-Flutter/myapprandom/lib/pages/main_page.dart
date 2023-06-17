@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapprandom/pages/card_page.dart';
+import 'package:myapprandom/pages/tarefa_page.dart';
 
 import '../shared/widgets/custom_drawer.dart';
 
@@ -10,14 +12,51 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  PageController controller = PageController();
+  int posicaoPagina = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text("Main app"),
-          ),
-          drawer: const CustomDrawer()),
+        appBar: AppBar(
+          title: const Text("Main app"),
+        ),
+        drawer: const CustomDrawer(),
+        body: Column(
+          children: [
+            Expanded(
+              child: PageView(
+                controller: controller,
+                onPageChanged: (value) {
+                  setState(() {
+                    posicaoPagina = value;
+                  });
+                },
+                children: const [
+                  TarefaPage(),
+                  CardPage(),
+                ],
+              ),
+            ),
+            BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                onTap: (value) {
+                  controller.jumpToPage(value);
+                },
+                currentIndex: posicaoPagina,
+                items: const [
+                  BottomNavigationBarItem(
+                    label: "Tarefas",
+                    icon: Icon(Icons.task),
+                  ),
+                  BottomNavigationBarItem(
+                    label: "Teste",
+                    icon: Icon(Icons.list),
+                  ),
+                ]),
+          ],
+        ),
+      ),
     );
   }
 }
