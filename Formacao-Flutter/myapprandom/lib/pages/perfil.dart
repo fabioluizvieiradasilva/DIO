@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapprandom/repository/linguagens_repository.dart';
 import 'package:myapprandom/repository/nivel_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shared/widgets/text_label.dart';
 
@@ -20,12 +21,24 @@ class _PerfilPageState extends State<PerfilPage> {
   var niveis = [];
 
   var linguagensRepository = LinguagensRepository();
-  var linguagemSelecionada = [];
+  List<String> linguagemSelecionada = [];
   var linguagens = [];
 
   double salarioEscolhido = 0;
   int tempoExperiencia = 0;
   bool salvando = false;
+
+  final String CHAVE_PERFIL_NOME_USUARIO = 'CHAVE_PERFIL_NOME_USUARIO';
+  final String CHAVE_PERFIL_DATA_NASCIMENTO = 'CHAVE_PERFIL_DATA_NASCIMENTO';
+  final String CHAVE_PERFIL_TEMPO_EXPERIENCIA =
+      'CHAVE_PERFIL_TEMPO_EXPERIENCIA';
+  final String CHAVE_PERFIL_NIVEL_EXPERIENCIA =
+      'CHAVE_PERFIL_NIVEL_EXPERIENCIA';
+  final String CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO =
+      'CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO';
+  final CHAVE_PERFIL_SALARIO = 'CHAVE_PERFIL_SALARIO';
+
+  late SharedPreferences storage;
 
   List<DropdownMenuItem> retornaItens(int quantidadeMax) {
     var itens = <DropdownMenuItem>[];
@@ -44,8 +57,25 @@ class _PerfilPageState extends State<PerfilPage> {
   void initState() {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagem();
+    carregarDados();
 
     super.initState();
+  }
+
+  void carregarDados() async {
+    storage = await SharedPreferences.getInstance();
+    setState(() {
+      nomeController.text = storage.getString(CHAVE_PERFIL_NOME_USUARIO) ?? '';
+      dataNascimentoController.text =
+          storage.getString(CHAVE_PERFIL_DATA_NASCIMENTO) ?? '';
+      dataNascimento = DateTime.parse(dataNascimentoController.text);
+      nivelSelecionado =
+          storage.getString(CHAVE_PERFIL_NIVEL_EXPERIENCIA) ?? '';
+      linguagemSelecionada =
+          storage.getStringList(CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO) ?? [];
+      tempoExperiencia = storage.getInt(CHAVE_PERFIL_TEMPO_EXPERIENCIA) ?? 0;
+      salarioEscolhido = storage.getDouble(CHAVE_PERFIL_SALARIO) ?? 0;
+    });
   }
 
   @override
@@ -161,7 +191,7 @@ class _PerfilPageState extends State<PerfilPage> {
                       },
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (nomeController.text.trim().length < 3) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -204,6 +234,20 @@ class _PerfilPageState extends State<PerfilPage> {
                           );
                           return;
                         }
+
+                        await storage.setString(
+                            CHAVE_PERFIL_NOME_USUARIO, nomeController.text);
+                        await storage.setString(CHAVE_PERFIL_DATA_NASCIMENTO,
+                            dataNascimentoController.text);
+                        await storage.setString(
+                            CHAVE_PERFIL_NIVEL_EXPERIENCIA, nivelSelecionado);
+                        await storage.setStringList(
+                            CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO,
+                            linguagemSelecionada);
+                        await storage.setInt(
+                            CHAVE_PERFIL_TEMPO_EXPERIENCIA, tempoExperiencia);
+                        await storage.setDouble(
+                            CHAVE_PERFIL_SALARIO, salarioEscolhido);
 
                         setState(() {
                           salvando = true;
