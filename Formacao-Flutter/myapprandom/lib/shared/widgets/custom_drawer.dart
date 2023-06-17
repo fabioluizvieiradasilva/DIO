@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapprandom/pages/configuracao_page.dart';
 import 'package:myapprandom/pages/login_page.dart';
 import 'package:myapprandom/pages/numeros_aleatorios_page.dart';
 
@@ -119,6 +120,11 @@ class CustomDrawer extends StatelessWidget {
           const Divider(),
           InkWell(
             onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ConfiguracaoPage()));
               debugPrint("Configurações");
             },
             child: Container(
