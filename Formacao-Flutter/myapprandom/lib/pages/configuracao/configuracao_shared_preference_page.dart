@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ConfiguracaoPage extends StatefulWidget {
-  const ConfiguracaoPage({super.key});
+class ConfiguracaoSharedPreferencePage extends StatefulWidget {
+  const ConfiguracaoSharedPreferencePage({super.key});
 
   @override
-  State<ConfiguracaoPage> createState() => _ConfiguracaoPageState();
+  State<ConfiguracaoSharedPreferencePage> createState() =>
+      _ConfiguracaoSharedPreferencePageState();
 }
 
-class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
+class _ConfiguracaoSharedPreferencePageState
+    extends State<ConfiguracaoSharedPreferencePage> {
   String? nomeUsuario;
   double? altura;
   bool notificacao = false;
