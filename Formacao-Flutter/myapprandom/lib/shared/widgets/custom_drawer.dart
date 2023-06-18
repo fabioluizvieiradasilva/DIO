@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapprandom/pages/configuracao_page.dart';
 import 'package:myapprandom/pages/login_page.dart';
-import 'package:myapprandom/pages/numeros_aleatorios_page.dart';
+import 'package:myapprandom/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 
 import '../../pages/perfil.dart';
 
@@ -101,7 +101,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const NumerosAleatorios()));
+                      builder: (context) => const NumerosAleatoriosHivePage()));
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),
