@@ -3,7 +3,7 @@ import 'package:myapprandom/pages/configuracao/configuracao_hive_page.dart';
 import 'package:myapprandom/pages/login_page.dart';
 import 'package:myapprandom/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 
-import '../../pages/perfil.dart';
+import '../../pages/perfil/perfil_hive_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -58,7 +58,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PerfilPage()),
+                MaterialPageRoute(builder: (context) => const PerfilHivePage()),
               );
             },
             child: Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapprandom/pages/card_page.dart';
-import 'package:myapprandom/pages/tarefa_page.dart';
+import 'package:myapprandom/pages/tarefa/tarefa_hive_page.dart';
 
 import '../shared/widgets/custom_drawer.dart';
 
@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: const [
-                  TarefaPage(),
+                  TarefaHivePage(),
                   CardPage(),
                 ],
               ),

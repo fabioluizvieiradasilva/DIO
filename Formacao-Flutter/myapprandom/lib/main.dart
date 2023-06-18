@@ -3,6 +3,9 @@ import 'package:hive/hive.dart';
 import 'package:myapprandom/my_app.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+import 'model/perfil_model.dart';
+import 'model/tarefa_model.dart';
+
 void main() async {
   //Carrega todos os bindings
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +16,8 @@ void main() async {
 
   //Cria o banco de dados Hive no diretório documentos da aplicação
   Hive.init(documentsDirectory.path);
+  Hive.registerAdapter(PerfilModelAdapter());
+  Hive.registerAdapter(TarefaAdapter());
 
   runApp(const MyApp());
 }

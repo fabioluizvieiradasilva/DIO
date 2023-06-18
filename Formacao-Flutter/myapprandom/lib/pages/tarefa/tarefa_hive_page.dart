@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:myapprandom/model/tarefa.dart';
+import 'package:myapprandom/model/tarefa_model.dart';
 import 'package:myapprandom/repository/tarefa_repository.dart';
 
-class TarefaPage extends StatefulWidget {
-  const TarefaPage({super.key});
+class TarefaHivePage extends StatefulWidget {
+  const TarefaHivePage({super.key});
 
   @override
-  State<TarefaPage> createState() => _TarefaPageState();
+  State<TarefaHivePage> createState() => _TarefaHivePageState();
 }
 
-class _TarefaPageState extends State<TarefaPage> {
+class _TarefaHivePageState extends State<TarefaHivePage> {
+  late TarefaRepository tarefaRepository;
+
   var descricaoController = TextEditingController();
-  var tarefaRepository = TarefaRepository();
+  //var tarefaRepository = TarefaRepository();
   var _tarefas = const <Tarefa>[];
   var naoConcluidos = false;
 
-  void getTarefas() {
-    _tarefas = naoConcluidos
+  var tarefa = Tarefa();
+
+  void getTarefas() async {
+/*     _tarefas = naoConcluidos
         ? tarefaRepository.listarNaoConcluido()
-        : tarefaRepository.listar();
+        : tarefaRepository.listar(); */
+
+    tarefaRepository = await TarefaRepository.carregar();
+    _tarefas = tarefaRepository.obterDados(naoConcluidos);
     setState(() {});
   }
 
@@ -53,9 +60,10 @@ class _TarefaPageState extends State<TarefaPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      tarefaRepository
-                          .adicionar(Tarefa(descricaoController.text, false));
+                      tarefaRepository.salvar(
+                          Tarefa.criar(descricaoController.text, false));
                       Navigator.pop(context);
+                      getTarefas();
                       setState(() {});
                     },
                     child: const Text("Salvar"),
@@ -97,7 +105,7 @@ class _TarefaPageState extends State<TarefaPage> {
                   return Dismissible(
                     key: Key(_tarefas[index].id),
                     onDismissed: (direction) {
-                      tarefaRepository.excluir(_tarefas[index].id);
+                      tarefaRepository.excluir(_tarefas[index]);
                       getTarefas();
                     },
                     child: ListTile(
@@ -105,7 +113,8 @@ class _TarefaPageState extends State<TarefaPage> {
                       trailing: Switch(
                         value: _tarefas[index].concluido,
                         onChanged: (bool value) {
-                          tarefaRepository.alterar(_tarefas[index].id, value);
+                          _tarefas[index].concluido = value;
+                          tarefaRepository.alterar(_tarefas[index]);
                           getTarefas();
                         },
                       ),

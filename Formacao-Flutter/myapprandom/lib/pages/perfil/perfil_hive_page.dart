@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:myapprandom/model/perfil_model.dart';
 import 'package:myapprandom/repository/linguagens_repository.dart';
 import 'package:myapprandom/repository/nivel_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:myapprandom/repository/perfil_repository.dart';
 
-import '../shared/widgets/text_label.dart';
+import '../../shared/widgets/text_label.dart';
 
-class PerfilPage extends StatefulWidget {
-  const PerfilPage({super.key});
+class PerfilHivePage extends StatefulWidget {
+  const PerfilHivePage({super.key});
 
   @override
-  State<PerfilPage> createState() => _PerfilPageState();
+  State<PerfilHivePage> createState() => _PerfilHivePageState();
 }
 
-class _PerfilPageState extends State<PerfilPage> {
+class _PerfilHivePageState extends State<PerfilHivePage> {
+  late PerfilRepository perfilRepository;
   var nomeController = TextEditingController(text: "");
   var dataNascimentoController = TextEditingController(text: "");
-  DateTime? dataNascimento;
+  //DateTime? dataNascimento;
   var nivelRepository = NivelRepository();
-  var nivelSelecionado = "";
+  //var nivelSelecionado = "";
   var niveis = [];
 
   var linguagensRepository = LinguagensRepository();
-  List<String> linguagemSelecionada = [];
+  //List<String> linguagemSelecionada = [];
   var linguagens = [];
 
-  double salarioEscolhido = 0;
-  int tempoExperiencia = 0;
+  //double salarioEscolhido = 0;
+  //int tempoExperiencia = 0;
   bool salvando = false;
 
   final String CHAVE_PERFIL_NOME_USUARIO = 'CHAVE_PERFIL_NOME_USUARIO';
@@ -38,7 +40,7 @@ class _PerfilPageState extends State<PerfilPage> {
       'CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO';
   final CHAVE_PERFIL_SALARIO = 'CHAVE_PERFIL_SALARIO';
 
-  late SharedPreferences storage;
+  var perfilModel = PerfilModel.vazio();
 
   List<DropdownMenuItem> retornaItens(int quantidadeMax) {
     var itens = <DropdownMenuItem>[];
@@ -63,18 +65,12 @@ class _PerfilPageState extends State<PerfilPage> {
   }
 
   void carregarDados() async {
-    storage = await SharedPreferences.getInstance();
+    perfilRepository = await PerfilRepository.carregar();
+    perfilModel = perfilRepository.obterDados();
+    //storage = await SharedPreferences.getInstance();
     setState(() {
-      nomeController.text = storage.getString(CHAVE_PERFIL_NOME_USUARIO) ?? '';
-      dataNascimentoController.text =
-          storage.getString(CHAVE_PERFIL_DATA_NASCIMENTO) ?? '';
-      dataNascimento = DateTime.parse(dataNascimentoController.text);
-      nivelSelecionado =
-          storage.getString(CHAVE_PERFIL_NIVEL_EXPERIENCIA) ?? '';
-      linguagemSelecionada =
-          storage.getStringList(CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO) ?? [];
-      tempoExperiencia = storage.getInt(CHAVE_PERFIL_TEMPO_EXPERIENCIA) ?? 0;
-      salarioEscolhido = storage.getDouble(CHAVE_PERFIL_SALARIO) ?? 0;
+      nomeController.text = perfilModel.nome ?? '';
+      dataNascimentoController.text = perfilModel.dataNascimento.toString();
     });
   }
 
@@ -116,7 +112,7 @@ class _PerfilPageState extends State<PerfilPage> {
                         );
                         if (data != null) {
                           dataNascimentoController.text = data.toString();
-                          dataNascimento = data;
+                          perfilModel.dataNascimento = data;
                         }
                       },
                     ),
@@ -128,12 +124,13 @@ class _PerfilPageState extends State<PerfilPage> {
                           .map(
                             (nivel) => RadioListTile(
                               title: Text(nivel.toString()),
-                              selected: nivelSelecionado == nivel,
+                              selected: perfilModel.nivelExperiencia == nivel,
                               value: nivel.toString(),
-                              groupValue: nivelSelecionado,
+                              groupValue: perfilModel.nivelExperiencia,
                               onChanged: (value) {
                                 setState(() {
-                                  nivelSelecionado = value.toString();
+                                  perfilModel.nivelExperiencia =
+                                      value.toString();
                                 });
                               },
                             ),
@@ -148,15 +145,14 @@ class _PerfilPageState extends State<PerfilPage> {
                           .map(
                             (linguagem) => CheckboxListTile(
                               title: Text(linguagem.toString()),
-                              value: linguagemSelecionada.contains(linguagem),
+                              value: perfilModel.linguagens.contains(linguagem),
                               onChanged: (value) {
                                 if (value == true) {
-                                  linguagemSelecionada.add(linguagem);
+                                  perfilModel.linguagens.add(linguagem);
                                 } else {
-                                  linguagemSelecionada.remove(linguagem);
+                                  perfilModel.linguagens.remove(linguagem);
                                 }
                                 setState(() {});
-                                debugPrint(linguagemSelecionada.toString());
                               },
                             ),
                           )
@@ -166,27 +162,28 @@ class _PerfilPageState extends State<PerfilPage> {
                       texto: "Tempo de Experiência",
                     ),
                     DropdownButton(
-                      value: tempoExperiencia,
+                      value: perfilModel.tempoExperiencia,
                       isExpanded: true,
                       items: retornaItens(50),
                       onChanged: (value) {
                         setState(() {
-                          tempoExperiencia = int.parse(value.toString());
+                          perfilModel.tempoExperiencia =
+                              int.parse(value.toString());
                         });
-                        debugPrint(tempoExperiencia.toString());
+                        debugPrint(perfilModel.tempoExperiencia.toString());
                       },
                     ),
                     TextLabel(
                       texto:
-                          "Pretensão salarial R\$ ${salarioEscolhido.round().toString()}",
+                          "Pretensão salarial R\$ ${perfilModel.salario?.round().toString()}",
                     ),
                     Slider(
                       min: 0,
                       max: 50000,
-                      value: salarioEscolhido,
+                      value: perfilModel.salario ?? 0,
                       onChanged: (value) {
                         setState(() {
-                          salarioEscolhido = value;
+                          perfilModel.salario = value;
                         });
                       },
                     ),
@@ -201,7 +198,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           );
                           return;
                         }
-                        if (dataNascimento == null) {
+                        if (perfilModel.dataNascimento == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Data de nascimento inválida!"),
@@ -209,7 +206,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           );
                           return;
                         }
-                        if (nivelSelecionado.trim() == "") {
+                        if (perfilModel.nivelExperiencia == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Um nível deve ser escolhido"),
@@ -217,7 +214,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           );
                           return;
                         }
-                        if (linguagemSelecionada.isEmpty) {
+                        if (perfilModel.linguagens.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Uma linguagem deve ser escolhida"),
@@ -225,7 +222,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           );
                           return;
                         }
-                        if (salarioEscolhido < 1500) {
+                        if ((perfilModel.salario ?? 0) < 1500) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(
@@ -235,19 +232,8 @@ class _PerfilPageState extends State<PerfilPage> {
                           return;
                         }
 
-                        await storage.setString(
-                            CHAVE_PERFIL_NOME_USUARIO, nomeController.text);
-                        await storage.setString(CHAVE_PERFIL_DATA_NASCIMENTO,
-                            dataNascimentoController.text);
-                        await storage.setString(
-                            CHAVE_PERFIL_NIVEL_EXPERIENCIA, nivelSelecionado);
-                        await storage.setStringList(
-                            CHAVE_PERFIL_lINGUAGENS_PROGRAMACAO,
-                            linguagemSelecionada);
-                        await storage.setInt(
-                            CHAVE_PERFIL_TEMPO_EXPERIENCIA, tempoExperiencia);
-                        await storage.setDouble(
-                            CHAVE_PERFIL_SALARIO, salarioEscolhido);
+                        perfilModel.nome = nomeController.text;
+                        perfilRepository.salvar(perfilModel);
 
                         setState(() {
                           salvando = true;
