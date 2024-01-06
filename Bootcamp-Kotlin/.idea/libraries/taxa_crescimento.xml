@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="taxa-crescimento">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/primeiras-condicoes/taxa-crescimento/taxa-crescimento.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
