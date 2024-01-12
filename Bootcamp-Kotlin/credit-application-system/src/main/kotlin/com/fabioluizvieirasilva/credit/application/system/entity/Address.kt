@@ -6,7 +6,7 @@ import jakarta.persistence.Embeddable
 @Embeddable
 data class Address(
     @Column(nullable = false)
-    val zipCode: String,
+    var zipCode: String = "",
     @Column(nullable = false)
-    val street: String
+    var street: String = ""
 )
