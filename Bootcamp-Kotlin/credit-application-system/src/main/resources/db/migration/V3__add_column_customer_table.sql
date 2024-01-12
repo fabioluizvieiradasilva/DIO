@@ -1,0 +1,1 @@
+alter table customer add income decimal
