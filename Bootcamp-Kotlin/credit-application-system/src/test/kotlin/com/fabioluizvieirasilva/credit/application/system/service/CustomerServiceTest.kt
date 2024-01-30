@@ -100,27 +100,30 @@ class CustomerServiceTest {
 
     }
 
-    private fun buildCustomer(
-        firstName: String = "Fabio Luiz",
-        lastName: String = "Vieira da Silva",
-        cpf: String = "34381442040",
-        email: String = "fabio@email.com",
-        password: String = "213456",
-        zipCode: String="23456879",
-        street:String="Rua do Fabio, n147",
-        id: Long = 1L,
-        income: BigDecimal = BigDecimal.valueOf(1000.0)
-    )=Customer(
-        firstName = firstName,
-        lastName = lastName,
-        cpf = cpf,
-        email = email,
-        password = password,
-        address = Address(
-            zipCode = zipCode,
-            street = street
-        ),
-        id = id,
-        income = income
-    )
+    companion object {
+        fun buildCustomer(
+            firstName: String = "Fabio Luiz",
+            lastName: String = "Vieira da Silva",
+            cpf: String = "34381442040",
+            email: String = "fabio@email.com",
+            password: String = "213456",
+            zipCode: String="23456879",
+            street:String="Rua do Fabio, n147",
+            id: Long = 1L,
+            income: BigDecimal = BigDecimal.valueOf(1000.0)
+        )=Customer(
+            firstName = firstName,
+            lastName = lastName,
+            cpf = cpf,
+            email = email,
+            password = password,
+            address = Address(
+                zipCode = zipCode,
+                street = street
+            ),
+            id = id,
+            income = income
+        )
+
+    }
 }
