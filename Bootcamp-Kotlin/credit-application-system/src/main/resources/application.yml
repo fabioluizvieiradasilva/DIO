@@ -2,7 +2,9 @@ spring:
   datasource:
     url: jdbc:h2:mem:credit-application-system-db
     username: fabinho
-  # jpa:
+  jpa:
+    properties:
+      hibernate.format_sql: true
     # hibernate:
       # ddl-auto: create-drop
   h2:
