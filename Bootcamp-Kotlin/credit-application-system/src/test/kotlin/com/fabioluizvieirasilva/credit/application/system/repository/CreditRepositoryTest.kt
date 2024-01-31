@@ -53,6 +53,20 @@ class CreditRepositoryTest {
 
     }
 
+    @Test
+    fun `should find all credits by customer id`(){
+        //given
+        val customerId: Long = 1L
+
+        //when
+        val creditList: List<Credits> = creditRepository.findAllByCustomerId(customerId)
+
+        //then
+        Assertions.assertThat(creditList).isNotEmpty
+        Assertions.assertThat(creditList.size).isEqualTo(2)
+        Assertions.assertThat(creditList).contains(credit1, credit2)
+    }
+
     private fun buildCredit(
 
         creditValue: BigDecimal = BigDecimal.valueOf(1000.00),
