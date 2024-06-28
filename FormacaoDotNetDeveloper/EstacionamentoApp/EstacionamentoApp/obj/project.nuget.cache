@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VneNvnwbBEQQqQ+aiZBjAaKFf3s6jpQMvpv1UPVY4iHY1Yhl2jPEGLdVaAKFJXGJxOKyNJqv7iKEg8AYoZoo9w==",
+  "dgSpecHash": "o0rdd+yltcGAxVbk2htN4Vtc+qhGDmbK8bcsnBcA61sbEBnrsUGmPXq0cZwywtNMM1nGoqbOC80NVfgpubbkhw==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\DIO\\EstacionamentoApp\\EstacionamentoApp\\EstacionamentoApp.csproj",
+  "projectFilePath": "C:\\Dev\\DIO\\FormacaoDotNetDeveloper\\EstacionamentoApp\\EstacionamentoApp\\EstacionamentoApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
