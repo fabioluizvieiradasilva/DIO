@@ -4,9 +4,14 @@
 
 using EstacionamentoApp.Model;
 
-Estacionamento estacionamento;
+
 bool sair=false;
 
+Console.Write("Informe o preço inicial:");
+var precoInicial = Convert.ToDecimal(Console.ReadLine());
+Console.Write("Informe o preço por hora:");
+var precoHora = Convert.ToDecimal(Console.ReadLine());
+var estacionamento = new Estacionamento(precoHora, precoInicial);
 
 Menu();
 
@@ -23,6 +28,8 @@ while(sair == false)
             Listar();
             break;
         case "3":
+            Remover();
+            break;
         case "4":
             sair = true;
             break;
@@ -35,6 +42,7 @@ while(sair == false)
 void Menu()
 {
     Console.Clear();
+    Console.WriteLine("********** SISTEMA DE ESTACIONAMENTO **********");
     Console.WriteLine("1 - Cadastrar Veículo");
     Console.WriteLine("2 - Listar Veículo");
     Console.WriteLine("3 - Remover Veículo");
@@ -58,7 +66,7 @@ void Listar()
     foreach (var item in veiculos)
     {
         Console.WriteLine($"Placa:{item.Placa}");
-        Console.WriteLine($"Placa:{item.Modelo}");
+        Console.WriteLine($"Modelo:{item.Modelo}");
         Console.WriteLine("-----------------------");
     }
     Console.ReadKey();
@@ -69,8 +77,23 @@ void Remover()
     Console.Clear();
     Console.WriteLine("Informe a placa do veículo:");
     var placa = Console.ReadLine();
+    Console.WriteLine("Informe a quantidade de horas:");
+    var horas = Convert.ToDecimal(Console.ReadLine());
+    var valorTotal = estacionamento.PrecoInicial + (estacionamento.PrecoHora * horas);
+    Console.WriteLine($"Valor total a pagar: R$ {valorTotal}");
 
-    Veiculo.
+    var veiculo = Veiculo.ListarVeiculos().FirstOrDefault(x => x.Placa == placa);
+    if (veiculo != null)
+    {
+        Veiculo.Remover(placa!);
+        Console.WriteLine("Veículo removido com sucesso!");
+    }
+    else
+    {
+        Console.WriteLine("Veículo não encontrado!");
+    }       
+    
+    Console.ReadKey();
 }
 
 void Iniciar()

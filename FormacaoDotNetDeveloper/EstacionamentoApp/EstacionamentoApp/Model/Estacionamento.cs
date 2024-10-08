@@ -8,8 +8,8 @@ namespace EstacionamentoApp.Model
 {
     public class Estacionamento
     {
-        private decimal PrecoHora { get; set; }
-        private decimal PrecoInicial { get; set; }
+        public decimal PrecoHora { get; set; }
+        public decimal PrecoInicial { get; set; }
 
         public Estacionamento(decimal precoHora, decimal precoInicial )
         {

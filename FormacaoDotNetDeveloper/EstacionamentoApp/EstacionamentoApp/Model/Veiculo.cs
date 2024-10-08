@@ -45,7 +45,7 @@ namespace EstacionamentoApp.Model
         {
             var veiculo = Veiculos.FirstOrDefault(x => x.Placa == placa);
             if(veiculo != null)
-
+                Veiculos.Remove(veiculo);
         }
     }
 }
