@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Produto": "Material de Escritório",
+    "Preco": 25.00,
+    "DataVenda": "2024-10-11T18:49:54.2535756-03:00"
+  },
+  {
+    "Id": 2,
+    "Produto": "Material de Limpeza",
+    "Preco": 55.00,
+    "DataVenda": "2024-10-11T18:49:54.2535756-03:00"
+  }
+]

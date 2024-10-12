@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tn/8HZW+wbMsGxjAHd2ycynahKL5gTz8YdH+s7GkXTEW8HyA1QHNKj8fyIyJ7+2Dy6eWAR8vLYZUp4a01muQ0w==",
+  "success": true,
+  "projectFilePath": "C:\\Dev\\DIO\\Bootcamp-XP\\ExemploSerializacao\\ExemploSerializacao.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fabin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

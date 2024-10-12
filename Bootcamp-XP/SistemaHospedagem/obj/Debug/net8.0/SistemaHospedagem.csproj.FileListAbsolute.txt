@@ -1,0 +1,15 @@
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\bin\Debug\net8.0\SistemaHospedagem.exe
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\bin\Debug\net8.0\SistemaHospedagem.deps.json
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\bin\Debug\net8.0\SistemaHospedagem.runtimeconfig.json
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\bin\Debug\net8.0\SistemaHospedagem.dll
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\bin\Debug\net8.0\SistemaHospedagem.pdb
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.AssemblyInfoInputs.cache
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.AssemblyInfo.cs
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.csproj.CoreCompileInputs.cache
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.sourcelink.json
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.dll
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\refint\SistemaHospedagem.dll
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.pdb
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\SistemaHospedagem.genruntimeconfig.cache
+C:\Dev\DIO\Bootcamp-XP\SistemaHospedagem\obj\Debug\net8.0\ref\SistemaHospedagem.dll
